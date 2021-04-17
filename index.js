@@ -113,33 +113,33 @@ client.connect(err => {
 
 
     //File upload in a folder and form submission
-    app.post('/addADoctorUploadInAFolder', (req, res) => {
-        const file = req.files.file;
-        const name = req.body.name;
-        const email = req.body.email;
-        const filePath = `${__dirname}/uploadedMedia/${file.name}`;
-        const data = {
-            name: name,
-            email: email,
-            image: file.name
-        }
-        //File Upload Start
-        file.mv(filePath, err => {
-            if (err) {
-                console.log(err)
-                return res.send({ msg: 'Failed to upload Image' })
-            }
-            //inserting into database
-            doctorsCollections.insertOne(data)
-                .then(result => {
-                    console.log(data, 'doctor added');
-                    return res.send({ name: file.name, path: `/${file.name}`, status: result.insertedCount > 0 })
-                    //res.send(result.insertedCount>0);
-                })
-        })
-        //File Upload Ends
-        console.log(name, email, file);
-    })
+    // app.post('/addADoctorUploadInAFolder', (req, res) => {
+    //     const file = req.files.file;
+    //     const name = req.body.name;
+    //     const email = req.body.email;
+    //     const filePath = `${__dirname}/uploadedMedia/${file.name}`;
+    //     const data = {
+    //         name: name,
+    //         email: email,
+    //         image: file.name
+    //     }
+    //     //File Upload Start
+    //     file.mv(filePath, err => {
+    //         if (err) {
+    //             console.log(err)
+    //             return res.send({ msg: 'Failed to upload Image' })
+    //         }
+    //         //inserting into database
+    //         doctorsCollections.insertOne(data)
+    //             .then(result => {
+    //                 console.log(data, 'doctor added');
+    //                 return res.send({ name: file.name, path: `/${file.name}`, status: result.insertedCount > 0 })
+    //                 //res.send(result.insertedCount>0);
+    //             })
+    //     })
+    //     //File Upload Ends
+    //     console.log(name, email, file);
+    // })
 
 
 
